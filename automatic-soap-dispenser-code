@@ -1,0 +1,28 @@
+#include <Servo.h>
+
+int ir_sensor = 2;
+int val = 0 ;
+Servo servoM;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Serial Working");
+  pinMode(ir_sensor, INPUT);   
+  servoM.attach(11);
+} 
+
+void loop() {
+  val = digitalRead(2);  
+  Serial.println(val);  
+  delay(100);
+  
+  if(val == 0 ) {
+       servoM.write(90);
+       delay(500);
+  }
+  
+  else {
+    servoM.write(1);
+  }
+}
+
