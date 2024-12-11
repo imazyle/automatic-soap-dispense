@@ -1,0 +1,29 @@
+#include <Servo.h>
+
+int ir_sensor = 2;
+int val = 0;
+Servo servoM1; // First servo
+Servo servoM2; // Second servo
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Serial Working");
+  pinMode(ir_sensor, INPUT);
+  servoM1.attach(11); // Attach first servo to pin 11
+  servoM2.attach(10); // Attach second servo to pin 10
+}
+
+void loop() {
+  val = digitalRead(ir_sensor);  // Use ir_sensor variable
+  Serial.println(val);
+  delay(100);
+
+  if (val == 0) {
+    servoM1.write(0);  // Move first servo to 0 degrees
+    servoM2.write(180);  // Move second servo to 180 degrees
+    delay(500);
+  } else {
+    servoM1.write(180);  // Move first servo to 180 degrees
+    servoM2.write(0);  // Move second servo to 0 degrees
+  }
+}
